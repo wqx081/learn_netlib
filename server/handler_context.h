@@ -11,20 +11,14 @@ class RESTHandler;
 typedef http::server<RESTHandler> RESTServer;
 
 struct HandlerContext {
-  const RESTServer::request& request;
+  HandlerContext(RESTServer::request req)
+    : request(std::move(req)) {}
+
+  RESTServer::request request;
   std::string request_body;
 
   std::vector<RESTServer::response_header> response_headers;
   std::string response_body; 
-  //TODO
-  //GetRequestBody()
-  //GetRequestHeaders()
-  //GetRequestPath()
-  //...
-  //SetResponseBody()
-  //SetResponseStatus()
-  //SetResponseHeaders()
-  //...
 };
 
 class Status {
