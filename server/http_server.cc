@@ -23,11 +23,19 @@ void RESTHandler::operator()(const RESTServer::request& request,
 
   switch (HTTPMethodFromString(request.method)) {
     case HTTPMethod::HEAD: 
-      conn->write("HEAD request");
-      break;
-    case HTTPMethod::GET: 
-        conn->write("GET request");
+      {
+        //conn->write("HEAD request");
+        std::shared_ptr<Dispatcher> dispatcher = std::make_shared<Dispatcher>(handler_context);
+        dispatcher->Schedule(conn);
         break;
+      }
+    case HTTPMethod::GET: 
+      {
+        //conn->write("GET request");
+        std::shared_ptr<Dispatcher> dispatcher = std::make_shared<Dispatcher>(handler_context);
+        dispatcher->Schedule(conn);
+        break;
+      }
     case HTTPMethod::PUT:
     case HTTPMethod::POST: 
       {
@@ -38,7 +46,7 @@ void RESTHandler::operator()(const RESTServer::request& request,
             // 创建 Dispatcher， 执行调度
             // LOG(INFO) << "Request_body: " << handler_context.request_body;
             // conn->write("Hello, World");
-           std::shared_ptr<Dispatcher> dispatcher = std::make_shared<Dispatcher>(handler_context);
+            std::shared_ptr<Dispatcher> dispatcher = std::make_shared<Dispatcher>(handler_context);
             dispatcher->Schedule(conn);
           });
           conn->read([request_reader](RESTServer::connection::input_range input,
@@ -98,6 +106,7 @@ class MonitorPreFilter : public rest::Handler {
   virtual ~MonitorPreFilter() {}
   virtual rest::Status OnHandle(rest::HandlerContext* handler_context) override {
     LOG(INFO) << "MonitorHandler::OnHandler::RequestBody:  " << handler_context->request_body; 
+    handler_context->response_body += "Hello: " + handler_context->request.method;
     return rest::Status();
   }
 };

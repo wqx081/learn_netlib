@@ -14,12 +14,13 @@ class ResponseWriter
   void operator()(RESTServer::connection_ptr conn);
   void SendHeaders(RESTServer::connection_ptr conn);
   void SendBody(size_t offset, size_t need_send_size, RESTServer::connection_ptr conn);
-  void HandleChunk(size_t prev_offset, size_t prev_need_send_size, size_t sent_size,
-                   RESTServer::connection_ptr conn, const std::error_code& ec);
 
  private:
   HandlerContext& handler_context_;
   static const size_t kMaxPerSendSize = 4096; // 4KB
+
+  void HandleChunk(size_t prev_offset, size_t prev_need_send_size, size_t sent_size,
+                   RESTServer::connection_ptr conn, const std::error_code& ec);
 };
 
 } // namespace rest

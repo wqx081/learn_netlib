@@ -6,7 +6,8 @@ CXXFLAGS += -std=c++11 -Wall -Werror -g -c -o
 LIB_FILES :=-lglog -lgflags -levent  -lpthread -lssl -lcrypto -lz -lboost_system -lcppnetlib-client-connections \
 	-lcppnetlib-server-parsers \
 	-lcppnetlib-uri \
-	-lpthread
+	-lpthread \
+	-lleveldb
 
 TEST_LIB_FILES :=  -L/usr/local/lib -lgtest -lgtest_main -lpthread
 
@@ -20,6 +21,9 @@ CPP_SOURCES := \
 	./server/dispatcher.cc \
 	./server/response_writer.cc \
 	./server/request_reader.cc \
+	./base/string_encode.cc \
+	./log/logged_entry.cc \
+	./log/leveldb_database.cc \
 
 CPP_OBJECTS := $(CPP_SOURCES:.cc=.o)
 
