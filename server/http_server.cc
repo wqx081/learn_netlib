@@ -69,7 +69,8 @@ HTTPServer::HTTPServer(const std::string& ip, const std::string& port)
       : ip_(ip),
         port_(port),
         options_(*RESTHandler::GetInstance()) {
-  server_.reset(new RESTServer(options_.address(ip_).port(port_)));
+  server_.reset(new RESTServer(options_.thread_pool(std::make_shared<boost::network::utils::thread_pool>(4))
+                               .address(ip_).port(port_)));
 }
 
 HTTPServer::~HTTPServer() {}
