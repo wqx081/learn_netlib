@@ -7,7 +7,8 @@ LIB_FILES :=-lglog -lgflags -levent  -lpthread -lssl -lcrypto -lz -lboost_system
 	-lcppnetlib-server-parsers \
 	-lcppnetlib-uri \
 	-lpthread \
-	-lleveldb
+	-lleveldb \
+
 
 TEST_LIB_FILES :=  -L/usr/local/lib -lgtest -lgtest_main -lpthread
 
@@ -22,6 +23,9 @@ CPP_SOURCES := \
 	./server/response_writer.cc \
 	./server/request_reader.cc \
 	./base/string_encode.cc \
+	./base/stringpiece.cc \
+	./base/base64.cc \
+	./base/encryptor.cc \
 	./log/logged_entry.cc \
 	./log/leveldb_database.cc \
 

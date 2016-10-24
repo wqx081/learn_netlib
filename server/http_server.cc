@@ -5,6 +5,8 @@
 #include "server/response_writer.h"
 #include "server/dispatcher.h"
 
+#include "base/encryptor.h"
+
 #include <glog/logging.h>
 
 namespace rest {
@@ -122,6 +124,19 @@ class HelloWorldHandler : public rest::Handler {
   }
 };
 
+class ALIApplyHandler : public rest::Handler {
+ public:
+  virtual ~ALIApplyHandler() {}
+  virtual rest::Status OnHandle(rest::HandlerContext* handler_context) override {
+    LOG(INFO) << "ALIApplyHandler::OnHandler::RequestBody: " << handler_context->request_body;
+    std::string signature;
+    base::AliMobileRsaKey::GetInstance()->GetPrivateKey()->GenerateSignature(handler_context->request_body,
+                                                                             &signature);
+    handler_context->response_body += signature;
+    return rest::Status();
+  }
+};
+
 int main(int argc, char** argv) {
   if (argc != 3) {
     std::cerr << "Usage: " << argv[0] << " " << " [ip] [port]" << std::endl;
@@ -135,6 +150,7 @@ int main(int argc, char** argv) {
 
   http_server.AddPreFilter(&monitor_pre_filter);
   http_server.AddRoute("/hello/", &hello_world_handler);
+  http_server.AddRoute("/api/alipay/apply", new ALIApplyHandler());
 
   http_server.Run();
   return 0;
