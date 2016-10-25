@@ -1,8 +1,8 @@
 // Author: Wangqixiang (wangqx at mpreader.com)
 // Date: 2016/08/08
 
-#ifndef MCS_BASE_PORT_H_
-#define MCS_BASE_PORT_H_
+#ifndef BASE_PORT_H_
+#define BASE_PORT_H_
 
 #include <string>
 
@@ -38,5 +38,5 @@ static const int64 kint64max = ((int64)0x7FFFFFFFFFFFFFFFll);
 
 typedef uint64 Fprint; // fingerprint.
 
-} // namespace mcs
-#endif // MCS_BASE_PORT_H_
+} // namespace base 
+#endif // BASE_PORT_H_

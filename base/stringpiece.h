@@ -3,8 +3,8 @@
 //
 // 模仿Golang 的 Slice, 主要用于函数的参数.
 // 使用StringPiece时，必须确保它指向的外部存储没有被释放(销毁).
-#ifndef MCS_BASE_STRINGPIECE_H_
-#define MCS_BASE_STRINGPIECE_H_
+#ifndef BASE_STRINGPIECE_H_
+#define BASE_STRINGPIECE_H_
 
 #include <assert.h>
 #include <stddef.h>
@@ -134,4 +134,4 @@ inline int StringPiece::compare(StringPiece b) const {
 extern std::ostream& operator<<(std::ostream& o, base::StringPiece piece);
 
 }  // namespace base
-#endif  // MCS_BASE_STRINGPIECE_H_
+#endif  // BASE_STRINGPIECE_H_

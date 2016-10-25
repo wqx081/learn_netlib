@@ -1,8 +1,9 @@
-#include "base/base64.h"
+#include "base/strings/base64.h"
 
 #include <glog/logging.h>
 
 namespace base {
+namespace strings {
 
 static const std::string base64_chars =
 "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -114,4 +115,5 @@ bool Base64Decode(StringPiece src, std::string* dest) {
   return true;
 }
 
+} // namespace strings
 } // namespace base

@@ -2,6 +2,7 @@
 *.d
 *.pyc
 *.swp
+mpr_rest_server
 deps/*
 
 # Compiled Object files

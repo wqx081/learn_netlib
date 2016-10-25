@@ -9,8 +9,8 @@
 #include <functional>
 #include <utility>
 
+#include "base/gtl/map_util.h"
 #include "server/handler_context.h"
-#include "server/map_util.h"
 
 namespace rest {
 
@@ -113,13 +113,13 @@ class RoutedHandlerChain {
   void AddRoute(const std::string& path, Handler* handler) {
     std::unique_lock<std::mutex> l(mu_);
 
-    InsertIfNotPresent(&route_map_, path, handler);
+    base::gtl::InsertIfNotPresent(&route_map_, path, handler);
   }
 
   void AddRoute(std::pair<std::string, Handler*> route) {
     std::unique_lock<std::mutex> l(mu_);
 
-    InsertIfNotPresent(&route_map_, route);
+    base::gtl::InsertIfNotPresent(&route_map_, route);
   }
 
   Status RoutingAndExecute(const std::string& path, 
@@ -127,7 +127,7 @@ class RoutedHandlerChain {
                            std::function<void()> completed_callback) {
     std::unique_lock<std::mutex> l(mu_);
 
-    auto handler = FindPtrOrNull(route_map_, path);
+    auto handler = base::gtl::FindPtrOrNull(route_map_, path);
     if (handler) {
       handler->OnHandle(handler_context);
       if (completed_callback) {

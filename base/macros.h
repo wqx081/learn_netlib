@@ -10,7 +10,7 @@
 #define ATTRIBUTE_UNUSED __attribute__((unused))
 #define ATTRIBUTE_COLD __attribute__((cold))
 #define ATTRIBUTE_WEAK __attribute__((weak))
-#define MCS_PACKED __attribute__((packed))
+#define MPR_PACKED __attribute__((packed))
 #define MUST_USE_RESULT __attribute__((warn_unused_result))
 #define PRINTF_ATTRIBUTE(string_index, first_to_check) \
   __attribute__((__format__(__printf__, string_index, first_to_check)))
