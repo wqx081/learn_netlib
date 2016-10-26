@@ -1,8 +1,8 @@
 //Author: Wangqixiang
 //Date: 2016/08/08
 //
-#ifndef MCS_BASE_MACROS_H_
-#define MCS_BASE_MACROS_H_
+#ifndef BASE_MACROS_H_
+#define BASE_MACROS_H_
 
 // For GCC
 #define ATTRIBUTE_NORETURN __attribute__((noreturn))
@@ -34,4 +34,4 @@
   } while (0)
 #endif
 
-#endif  // MCS_BASE_MACROS_H_
+#endif  // BASE_MACROS_H_

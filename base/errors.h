@@ -1,5 +1,5 @@
-#ifndef MCS_BASE_CORE_ERRORS_H_
-#define MCS_BASE_CORE_ERRORS_H_
+#ifndef BASE_CORE_ERRORS_H_
+#define BASE_CORE_ERRORS_H_
 
 #include "base/status.h"
 #include "base/strings/strcat.h"

@@ -61,6 +61,8 @@ flags = [
 'c++',
 '-I',
 './deps/asio/asio/include/',
+'-I',
+'./deps/libevhtp/',
 '-isystem',
 '../BoostParts',
 '-isystem',

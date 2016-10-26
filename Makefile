@@ -1,14 +1,16 @@
 CXXFLAGS += -std=c++11
 CXXFLAGS += -I./
-CXXFLAGS += -I./deps/asio/asio/include/
+CXXFLAGS += -I/usr/local/include/evhtp/
 CXXFLAGS += -std=c++11 -Wall -Werror -g -c -o
 
-LIB_FILES :=-lglog -lgflags -levent  -lpthread -lssl -lcrypto -lz -lboost_system -lcppnetlib-client-connections \
-	-lcppnetlib-server-parsers \
-	-lcppnetlib-uri \
+LIB_FILES :=-lglog -lgflags -levent_openssl -levent -levent_pthreads -lz \
 	-lpthread \
 	-lleveldb \
 	-lprotobuf \
+	-ldl \
+	-lz \
+	-lsnappy \
+	-levhtp	-lssl -lcrypto -levent_openssl \
 
 TEST_LIB_FILES :=  -L/usr/local/lib -lgtest -lgtest_main -lgmock -lpthread
 
@@ -18,18 +20,15 @@ GRPC_CPP_PLUGIN_PATH ?= `which $(GRPC_CPP_PLUGIN)`
 PROTOS_PATH = ./protos
 
 CPP_SOURCES := \
-	./server/http_method.cc \
-	./server/dispatcher.cc \
-	./server/response_writer.cc \
-	./server/request_reader.cc \
-	./base/encryptor.cc \
 	\
 	./base/string_encode.cc \
 	./base/stringpiece.cc \
 	./base/status.cc \
 	./base/arena.cc \
 	./base/bitmap.cc \
+	./base/coding.cc \
 	./base/histogram.cc \
+	./base/threadpool.cc \
 	\
 	./base/monitoring/registry.cc \
 	./base/monitoring/util/protobuf.cc \
@@ -46,12 +45,40 @@ CPP_SOURCES := \
 	./base/ini/ini.cc \
 	./base/ini/ini_reader.cc \
 	\
+	./base/hash/hash.cc \
+	./base/hash/crc32c.cc \
+	\
 	./base/random/distribution_sampler.cc \
 	./base/random/random.cc \
 	./base/random/simple_philox.cc \
 	./base/random/weighted_picker.cc \
 	\
 	./base/platform/mem.cc \
+	./base/platform/env.cc \
+	./base/platform/file_system.cc \
+	./base/platform/linux/linux_file_system.cc \
+	./base/platform/linux/env.cc \
+	./base/platform/linux/load_library.cc \
+	./base/platform/linux/error.cc \
+	./base/platform/snappy.cc \
+	\
+	./base/io/path.cc \
+	./base/io/inputstream_interface.cc \
+	./base/io/inputbuffer.cc \
+	./base/io/random_inputstream.cc \
+	./base/io/buffered_inputstream.cc \
+	./base/io/zlib_inputstream.cc \
+	./base/io/zlib_outputbuffer.cc \
+	\
+	./base/io/table/block.cc \
+	./base/io/table/block_builder.cc \
+	./base/io/table/format.cc \
+	./base/io/table/iterator.cc \
+	./base/io/table/table.cc \
+	./base/io/table/table_builder.cc \
+	./base/io/table/two_level_iterator.cc \
+	\
+	./base/http/http_parser.cc \
 	\
 	./log/logged_entry.cc \
 	./log/leveldb_database.cc \
@@ -60,8 +87,8 @@ CPP_OBJECTS := $(CPP_SOURCES:.cc=.o)
 
 
 TESTS := \
-	./server/handler_chain_unittest \
-	\
+	./base/threadpool_unittest \
+	./base/notification_unittest \
 	./base/arena_unittest \
 	./base/bitmap_unittest \
 	./base/histogram_unittest \
@@ -90,11 +117,25 @@ TESTS := \
 	./base/random/simple_philox_unittest \
 	./base/random/weighted_picker_unittest \
 	\
+	./base/io/inputbuffer_unittest \
+	./base/io/buffered_inputstream_unittest \
+	./base/io/path_unittest \
+	./base/io/zlib_buffers_unittest \
+	./base/io/random_inputstream_unittest \
+	./base/io/inputstream_interface_unittest \
+	\
+	./base/io/table/table_unittest \
+	\
 	./base/monitoring/counter_unittest \
 	./base/monitoring/gauge_unittest \
 	./base/monitoring/registry_unittest \
+	\
+	./base/http/libevhtp_basic_unittest \
+	./base/http/libevhtp_http_server_unittest \
 
-APP := mpr_rest_server
+
+#APP := mpr_rest_server
+APP := #mpr_rest_server
 
 all: $(CPP_OBJECTS) $(APP) $(TESTS)
 .cc.o:
@@ -122,6 +163,20 @@ $(APP): ./server/http_server.o
 	@$(CXX) $(CXXFLAGS) $@ $<
 
 ## base
+./base/threadpool_unittest: ./base/threadpool_unittest.o
+	@echo "  [LINK] $@"
+	@$(CXX) -o $@ $< $(CPP_OBJECTS) $(LIB_FILES) $(TEST_LIB_FILES)
+./base/threadpool_unittest.o: ./base/threadpool_unittest.cc \
+	./base/threadpool.h
+	@echo "  [CXX]  $@"
+	@$(CXX) $(CXXFLAGS) $@ $<
+./base/notification_unittest: ./base/notification_unittest.o
+	@echo "  [LINK] $@"
+	@$(CXX) -o $@ $< $(CPP_OBJECTS) $(LIB_FILES) $(TEST_LIB_FILES)
+./base/notification_unittest.o: ./base/notification_unittest.cc \
+	./base/notification.h
+	@echo "  [CXX]  $@"
+	@$(CXX) $(CXXFLAGS) $@ $<
 ./base/arena_unittest: ./base/arena_unittest.o
 	@echo "  [LINK] $@"
 	@$(CXX) -o $@ $< $(CPP_OBJECTS) $(LIB_FILES) $(TEST_LIB_FILES)
@@ -327,11 +382,90 @@ $(APP): ./server/http_server.o
 	@echo "  [CXX]  $@"
 	@$(CXX) $(CXXFLAGS) $@ $<
 
+./base/io/buffered_inputstream_unittest: ./base/io/buffered_inputstream_unittest.o
+	@echo "  [LINK] $@"
+	@$(CXX) -o $@ $< $(CPP_OBJECTS) $(LIB_FILES) $(TEST_LIB_FILES)
+./base/io/buffered_inputstream_unittest.o: ./base/io/buffered_inputstream_unittest.cc \
+	./base/io/buffered_inputstream.h
+	@echo "  [CXX]  $@"
+	@$(CXX) $(CXXFLAGS) $@ $<
+
+./base/io/path_unittest: ./base/io/path_unittest.o
+	@echo "  [LINK] $@"
+	@$(CXX) -o $@ $< $(CPP_OBJECTS) $(LIB_FILES) $(TEST_LIB_FILES)
+./base/io/path_unittest.o: ./base/io/path_unittest.cc \
+	./base/io/path.h
+	@echo "  [CXX]  $@"
+	@$(CXX) $(CXXFLAGS) $@ $<
+
+./base/io/inputbuffer_unittest: ./base/io/inputbuffer_unittest.o
+	@echo "  [LINK] $@"
+	@$(CXX) -o $@ $< $(CPP_OBJECTS) $(LIB_FILES) $(TEST_LIB_FILES)
+./base/io/inputbuffer_unittest.o: ./base/io/inputbuffer_unittest.cc \
+	./base/io/inputbuffer.h
+	@echo "  [CXX]  $@"
+	@$(CXX) $(CXXFLAGS) $@ $<
+
+./base/io/inputstream_interface_unittest: ./base/io/inputstream_interface_unittest.o
+	@echo "  [LINK] $@"
+	@$(CXX) -o $@ $< $(CPP_OBJECTS) $(LIB_FILES) $(TEST_LIB_FILES)
+./base/io/inputstream_interface_unittest.o: ./base/io/inputstream_interface_unittest.cc \
+	./base/io/inputstream_interface.h
+	@echo "  [CXX]  $@"
+	@$(CXX) $(CXXFLAGS) $@ $<
+
+./base/io/zlib_buffers_unittest: ./base/io/zlib_buffers_unittest.o
+	@echo "  [LINK] $@"
+	@$(CXX) -o $@ $< $(CPP_OBJECTS) $(LIB_FILES) $(TEST_LIB_FILES)
+./base/io/zlib_buffers_unittest.o: ./base/io/zlib_buffers_unittest.cc \
+	./base/io/zlib_inputstream.h \
+	./base/io/zlib_outputbuffer.h
+	@echo "  [CXX]  $@"
+	@$(CXX) $(CXXFLAGS) $@ $<
+
+./base/io/random_inputstream_unittest: ./base/io/random_inputstream_unittest.o
+	@echo "  [LINK] $@"
+	@$(CXX) -o $@ $< $(CPP_OBJECTS) $(LIB_FILES) $(TEST_LIB_FILES)
+./base/io/random_inputstream_unittest.o: ./base/io/random_inputstream_unittest.cc \
+	./base/io/random_inputstream.h
+	@echo "  [CXX]  $@"
+	@$(CXX) $(CXXFLAGS) $@ $<
+
+./base/io/table/table_unittest: ./base/io/table/table_unittest.o
+	@echo "  [LINK] $@"
+	@$(CXX) -o $@ $< $(CPP_OBJECTS) $(LIB_FILES) $(TEST_LIB_FILES)
+./base/io/table/table_unittest.o: ./base/io/table/table_unittest.cc \
+	./base/io/table/block.h \
+	./base/io/table/block_builder.h \
+	./base/io/table/table.h
+	@echo "  [CXX]  $@"
+	@$(CXX) $(CXXFLAGS) $@ $<
+
+./base/http/http_parser_unittest: ./base/http/http_parser_unittest.o
+	@echo "  [LINK] $@"
+	@$(CXX) -o $@ $< $(CPP_OBJECTS) $(LIB_FILES) $(TEST_LIB_FILES)
+./base/http/http_parser_unittest.o: ./base/http/http_parser_unittest.cc \
+	./base/http/http_parser.h
+	@echo "  [CXX]  $@"
+	@$(CXX) $(CXXFLAGS) $@ $<
+./base/http/libevhtp_basic_unittest: ./base/http/libevhtp_basic_unittest.o
+	@echo "  [LINK] $@"
+	@$(CXX) -o $@ $< $(CPP_OBJECTS) $(LIB_FILES) $(TEST_LIB_FILES)
+./base/http/libevhtp_basic_unittest.o: ./base/http/libevhtp_basic_unittest.cc
+	@echo "  [CXX]  $@"
+	@$(CXX) $(CXXFLAGS) $@ $<
+./base/http/libevhtp_http_server_unittest: ./base/http/libevhtp_http_server_unittest.o
+	@echo "  [LINK] $@"
+	@$(CXX) -o $@ $< $(CPP_OBJECTS) $(LIB_FILES) $(TEST_LIB_FILES)
+./base/http/libevhtp_http_server_unittest.o: ./base/http/libevhtp_http_server_unittest.cc
+	@echo "  [CXX]  $@"
+	@$(CXX) $(CXXFLAGS) $@ $<
+
 
 ## /////////////////////////////
 
 clean:
-	rm -fr ./server/*.o
+	find . -name "*.o" | xargs rm
 	rm -fr $(APP)
 	@rm -fr $(TESTS)
 	@echo "rm *_unittest"

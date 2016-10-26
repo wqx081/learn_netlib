@@ -20,6 +20,6 @@ extern void Appendf(string* dst, const char* format, ...) PRINTF_ATTRIBUTE(2, 3)
 extern void Appendv(string* dst, const char* format, va_list ap);
 
 }  // namespace strings
-}  // namespace mcs
+}  // namespace base
 
 #endif  // BASE_SRINGS_STRINGPRINTF_H_
