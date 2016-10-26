@@ -1,14 +1,15 @@
-#ifndef CERT_TRANS_MONITORING_LATENCY_H_
-#define CERT_TRANS_MONITORING_LATENCY_H_
+#ifndef BASE_MONITORING_LATENCY_H_
+#define BASE_MONITORING_LATENCY_H_
 
 #include <string>
 
 #include "base/macros.h"
-#include "monitoring/counter.h"
-#include "monitoring/event_metric.h"
-#include "monitoring/monitoring.h"
+#include "base/monitoring/counter.h"
+#include "base/monitoring/event_metric.h"
+#include "base/monitoring/monitoring.h"
 
-namespace cert_trans {
+namespace base {
+namespace monitoring {
 
 class ScopedLatency;
 
@@ -120,13 +121,13 @@ void Latency<TimeUnit, LabelTypes...>::RecordLatency(
 template <class TimeUnit, class... LabelTypes>
 ScopedLatency Latency<TimeUnit, LabelTypes...>::GetScopedLatency(
     const LabelTypes&... labels) {
-  return cert_trans::ScopedLatency(
+  return ScopedLatency(
       std::bind(&Latency<TimeUnit, LabelTypes...>::RecordLatency, this,
                 labels..., std::placeholders::_1));
 }
 
 
-}  // namespace cert_trans
+} // namespace monitoring
+} // namespace base
 
-
-#endif  // CERT_TRANS_MONITORING_LATENCY_H_
+#endif  // BASE_MONITORING_LATENCY_H_

@@ -1,13 +1,14 @@
-#include "monitoring/monitoring.h"
+#include "base/monitoring/monitoring.h"
 
 #include <glog/logging.h>
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 #include <memory>
 
-#include "util/testing.h"
+#include <gtest/gtest.h>
 
-namespace cert_trans {
+namespace base {
+namespace monitoring {
 
 using std::string;
 using std::vector;
@@ -91,10 +92,6 @@ TEST_F(CounterTest, TestCounterWithLabelsMultiValues) {
 }
 
 
-}  // namespace cert_trans
+} // namespace monitoring
+} // namespace base
 
-
-int main(int argc, char** argv) {
-  cert_trans::test::InitTesting(argv[0], &argc, &argv, true);
-  return RUN_ALL_TESTS();
-}

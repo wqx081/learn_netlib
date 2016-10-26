@@ -1,11 +1,12 @@
-#include "monitoring/registry.h"
-#include "monitoring/metric.h"
+#include "base/monitoring/registry.h"
+#include "base/monitoring/metric.h"
 
 using std::lock_guard;
 using std::mutex;
 using std::set;
 
-namespace cert_trans {
+namespace base {
+namespace monitoring {
 
 using std::lock_guard;
 using std::mutex;
@@ -35,5 +36,5 @@ set<const Metric*> Registry::GetMetrics() const {
   return set<const Metric*>(metrics_);
 }
 
-
-}  // namespace cert_trans
+} // namespace monitoring
+} // namespace base

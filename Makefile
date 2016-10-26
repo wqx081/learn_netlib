@@ -8,9 +8,9 @@ LIB_FILES :=-lglog -lgflags -levent  -lpthread -lssl -lcrypto -lz -lboost_system
 	-lcppnetlib-uri \
 	-lpthread \
 	-lleveldb \
+	-lprotobuf \
 
-
-TEST_LIB_FILES :=  -L/usr/local/lib -lgtest -lgtest_main -lpthread
+TEST_LIB_FILES :=  -L/usr/local/lib -lgtest -lgtest_main -lgmock -lpthread
 
 PROTOC = protoc
 GRPC_CPP_PLUGIN=grpc_cpp_plugin
@@ -30,6 +30,11 @@ CPP_SOURCES := \
 	./base/arena.cc \
 	./base/bitmap.cc \
 	./base/histogram.cc \
+	\
+	./base/monitoring/registry.cc \
+	./base/monitoring/util/protobuf.cc \
+	./base/monitoring/prometheus/metrics.pb.cc \
+	./base/monitoring/prometheus/exporter.cc \
 	\
 	./base/strings/stringprintf.cc \
 	./base/strings/numbers.cc \
@@ -84,6 +89,10 @@ TESTS := \
 	./base/random/random_unittest \
 	./base/random/simple_philox_unittest \
 	./base/random/weighted_picker_unittest \
+	\
+	./base/monitoring/counter_unittest \
+	./base/monitoring/gauge_unittest \
+	./base/monitoring/registry_unittest \
 
 APP := mpr_rest_server
 
@@ -292,6 +301,29 @@ $(APP): ./server/http_server.o
 	@$(CXX) -o $@ $< $(CPP_OBJECTS) $(LIB_FILES) $(TEST_LIB_FILES)
 ./base/random/weighted_picker_unittest.o: ./base/random/weighted_picker_unittest.cc \
 	./base/random/weighted_picker.h
+	@echo "  [CXX]  $@"
+	@$(CXX) $(CXXFLAGS) $@ $<
+
+
+./base/monitoring/counter_unittest: ./base/monitoring/counter_unittest.o
+	@echo "  [LINK] $@"
+	@$(CXX) -o $@ $< $(CPP_OBJECTS) $(LIB_FILES) $(TEST_LIB_FILES)
+./base/monitoring/counter_unittest.o: ./base/monitoring/counter_unittest.cc \
+	./base/monitoring/counter.h
+	@echo "  [CXX]  $@"
+	@$(CXX) $(CXXFLAGS) $@ $<
+./base/monitoring/gauge_unittest: ./base/monitoring/gauge_unittest.o
+	@echo "  [LINK] $@"
+	@$(CXX) -o $@ $< $(CPP_OBJECTS) $(LIB_FILES) $(TEST_LIB_FILES)
+./base/monitoring/gauge_unittest.o: ./base/monitoring/gauge_unittest.cc \
+	./base/monitoring/gauge.h
+	@echo "  [CXX]  $@"
+	@$(CXX) $(CXXFLAGS) $@ $<
+./base/monitoring/registry_unittest: ./base/monitoring/registry_unittest.o
+	@echo "  [LINK] $@"
+	@$(CXX) -o $@ $< $(CPP_OBJECTS) $(LIB_FILES) $(TEST_LIB_FILES)
+./base/monitoring/registry_unittest.o: ./base/monitoring/registry_unittest.cc \
+	./base/monitoring/registry.h
 	@echo "  [CXX]  $@"
 	@$(CXX) $(CXXFLAGS) $@ $<
 

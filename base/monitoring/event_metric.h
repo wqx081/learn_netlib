@@ -1,15 +1,16 @@
-#ifndef CERT_TRANS_MONITORING_EVENT_METRIC_H_
-#define CERT_TRANS_MONITORING_EVENT_METRIC_H_
+#ifndef BASE_MONITORING_EVENT_METRIC_H_
+#define BASE_MONITORING_EVENT_METRIC_H_
 
 #include <memory>
 #include <mutex>
 #include <string>
 
 #include "base/macros.h"
-#include "monitoring/counter.h"
-#include "monitoring/monitoring.h"
+#include "base/monitoring/counter.h"
+#include "base/monitoring/monitoring.h"
 
-namespace cert_trans {
+namespace base {
+namespace monitoring {
 
 // A helper class for monitoring counter-type values for which it's interesting
 // to also have the number of times the counter has been updated (e.g. anything
@@ -61,7 +62,7 @@ void EventMetric<LabelTypes...>::RecordEvent(const LabelTypes&... labels,
 }
 
 
-}  // namespace cert_trans
+} // namespace monitoring
+} // namespace base
 
-
-#endif  // CERT_TRANS_MONITORING_EVENT_METRIC_H_
+#endif  // BASE_MONITORING_EVENT_METRIC_H_

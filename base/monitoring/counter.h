@@ -1,7 +1,6 @@
 #ifndef BASE_MONITORING_COUNTER_H_
 #define BASE_MONITORING_COUNTER_H_
 
-
 #include <gflags/gflags.h>
 #include <memory>
 #include <mutex>
@@ -12,6 +11,7 @@
 #include "base/monitoring/metric.h"
 
 namespace base {
+namespace monitoring {
 
 // A metric which can only increase (e.g. total_requests_served).
 template <class... LabelTypes>
@@ -88,6 +88,7 @@ Counter<LabelTypes...>::CurrentValues() const {
 }
 
 
-}  // namespace base
+} // namespace monitoring
+} // namespace base
 
 #endif  // BASE_MONITORING_COUNTER_H_

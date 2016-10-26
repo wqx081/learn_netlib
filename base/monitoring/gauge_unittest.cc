@@ -1,13 +1,14 @@
-#include "monitoring/monitoring.h"
+#include "base/monitoring/monitoring.h"
 
 #include <glog/logging.h>
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 #include <memory>
 
-#include "util/testing.h"
+#include <gtest/gtest.h>
 
-namespace cert_trans {
+namespace base {
+namespace monitoring {
 
 using std::string;
 using std::vector;
@@ -96,10 +97,5 @@ TEST_F(GaugeTest, TestGaugeWithLabelsMultiValues) {
 }
 
 
-}  // namespace cert_trans
-
-
-int main(int argc, char** argv) {
-  cert_trans::test::InitTesting(argv[0], &argc, &argv, true);
-  return RUN_ALL_TESTS();
-}
+} // namespace monitoring
+} // namespace base

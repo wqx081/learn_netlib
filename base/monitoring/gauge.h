@@ -1,16 +1,17 @@
-#ifndef CERT_TRANS_MONITORING_GAUGE_H_
-#define CERT_TRANS_MONITORING_GAUGE_H_
+#ifndef BASE_MONITORING_GAUGE_H_
+#define BASE_MONITORING_GAUGE_H_
 
 #include <chrono>
 #include <mutex>
 #include <string>
 
 #include "base/macros.h"
-#include "monitoring/labelled_values.h"
-#include "monitoring/metric.h"
+#include "base/monitoring/labelled_values.h"
+#include "base/monitoring/metric.h"
 
 
-namespace cert_trans {
+namespace base {
+namespace monitoring {
 
 // A metric whose values can go down as well as up (e.g. memory usage.)
 template <class... LabelTypes>
@@ -78,8 +79,7 @@ Gauge<LabelTypes...>::CurrentValues() const {
   return values_.CurrentValues();
 }
 
+} // namespace monitoring
+} // namespace base
 
-}  // namespace cert_trans
-
-
-#endif  // CERT_TRANS_MONITORING_GAUGE_H_
+#endif  // BASE_MONITORING_GAUGE_H_

@@ -1,5 +1,5 @@
-#ifndef CERT_TRANS_MONITORING_METRIC_H_
-#define CERT_TRANS_MONITORING_METRIC_H_
+#ifndef BASE_MONITORING_METRIC_H_
+#define BASE_MONITORING_METRIC_H_
 
 #include <map>
 #include <ostream>
@@ -8,9 +8,10 @@
 #include <vector>
 
 #include "base/macros.h"
-#include "monitoring/registry.h"
+#include "base/monitoring/registry.h"
 
-namespace cert_trans {
+namespace base {
+namespace monitoring {
 
 // As pointless as this looks, it's crucial in order to be able to specify that
 // we want as many |name| typed args as there are LabelTypes... in the Metric
@@ -87,6 +88,7 @@ class Metric {
   DISALLOW_COPY_AND_ASSIGN(Metric);
 };
 
-}  // namespace cert_trans
+} // namespace monitoring
+} // namespace base
 
-#endif  // CERT_TRANS_MONITORING_METRIC_H_
+#endif  // BASE_MONITORING_METRIC_H_

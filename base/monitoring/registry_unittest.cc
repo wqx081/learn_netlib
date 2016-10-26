@@ -1,4 +1,4 @@
-#include "monitoring/registry.h"
+#include "base/monitoring/registry.h"
 
 #include <glog/logging.h>
 #include <gmock/gmock.h>
@@ -6,10 +6,12 @@
 #include <memory>
 #include <sstream>
 
-#include "monitoring/monitoring.h"
-#include "util/testing.h"
+#include "base/monitoring/monitoring.h"
 
-namespace cert_trans {
+#include <gtest/gtest.h>
+
+namespace base {
+namespace monitoring {
 
 using std::ostringstream;
 using std::string;
@@ -41,11 +43,5 @@ TEST_F(RegistryTest, TestAddMetric) {
               AllOf(Contains(counter.get()), Contains(gauge.get())));
 }
 
-
-}  // namespace cert_trans
-
-
-int main(int argc, char** argv) {
-  cert_trans::test::InitTesting(argv[0], &argc, &argv, true);
-  return RUN_ALL_TESTS();
-}
+} // namespace monitoring
+} // namespace base

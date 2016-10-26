@@ -1,18 +1,17 @@
-#ifndef CERT_TRANS_MONITORING_PROMETHEUS_H_
-#define CERT_TRANS_MONITORING_PROMETHEUS_H_
+#ifndef BASE_MONITORING_PROMETHEUS_H_
+#define BASE_MONITORING_PROMETHEUS_H_
 
 #include <glog/logging.h>
 
-#include "util/protobuf_util.h"
+#include "base/monitoring/util/protobuf.h"
 
-namespace cert_trans {
+namespace base {
+namespace monitoring {
 
 void ExportMetricsToPrometheus(std::ostream* os);
+void ExportMetricsToHTML(std::ostream* os);
 
+} // namespace monitoring
+} // namespace base
 
-void ExportMetricsToHtml(std::ostream* os);
-
-
-}  // namespace cert_trans
-
-#endif  // CERT_TRANS_MONITORING_PROMETHEUS_H_
+#endif  // BASE_MONITORING_PROMETHEUS_H_

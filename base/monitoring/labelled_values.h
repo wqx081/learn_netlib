@@ -1,15 +1,15 @@
-#ifndef CERT_TRANS_MONITORING_LABELLED_VALUES_H_
-#define CERT_TRANS_MONITORING_LABELLED_VALUES_H_
+#ifndef BASE_MONITORING_LABELLED_VALUES_H_
+#define BASE_MONITORING_LABELLED_VALUES_H_
 
 #include <glog/logging.h>
 #include <chrono>
 #include <map>
 #include <mutex>
 
-#include "monitoring/metric.h"
+#include "base/monitoring/metric.h"
 
-namespace cert_trans {
-
+namespace base {
+namespace monitoring {
 
 template <class... LabelTypes>
 class LabelledValues {
@@ -133,7 +133,7 @@ LabelledValues<LabelTypes...>::CurrentValues() const {
   return ret;
 }
 
+} // namespace monitoring
+} // namespace base
 
-}  // namespace cert_trans
-
-#endif  // CERT_TRANS_MONITORING_LABELLED_VALUES_H_
+#endif // BASE_MONITORING_LABELLED_VALUES_H_

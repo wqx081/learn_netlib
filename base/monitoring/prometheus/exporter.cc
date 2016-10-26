@@ -1,7 +1,7 @@
-#include "monitoring/prometheus/exporter.h"
-#include "monitoring/metric.h"
-#include "monitoring/prometheus/metrics.pb.h"
-#include "monitoring/registry.h"
+#include "base/monitoring/prometheus/exporter.h"
+#include "base/monitoring/metric.h"
+#include "base/monitoring/prometheus/metrics.pb.h"
+#include "base/monitoring/registry.h"
 
 using std::chrono::duration_cast;
 using std::chrono::milliseconds;
@@ -10,7 +10,9 @@ using std::set;
 using std::string;
 using std::vector;
 
-namespace cert_trans {
+namespace base {
+namespace monitoring {
+
 namespace {
 
 void AddLabelTypes(::io::prometheus::client::Metric* metric,
@@ -79,7 +81,7 @@ void ExportMetricsToPrometheus(std::ostream* os) {
 }
 
 
-void ExportMetricsToHtml(std::ostream* os) {
+void ExportMetricsToHTML(std::ostream* os) {
   const set<const Metric*> metrics(Registry::Instance()->GetMetrics());
   *os << "<html>\n"
       << "<body>\n"
@@ -103,5 +105,5 @@ void ExportMetricsToHtml(std::ostream* os) {
       << "</html>\n";
 }
 
-
-}  // namespace cert_trans
+} // namespace monitoring
+} // namespace base

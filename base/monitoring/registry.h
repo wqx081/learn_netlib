@@ -1,5 +1,5 @@
-#ifndef CERT_TRANS_MONITORING_REGISTRY_H_
-#define CERT_TRANS_MONITORING_REGISTRY_H_
+#ifndef BASE_MONITORING_REGISTRY_H_
+#define BASE_MONITORING_REGISTRY_H_
 
 #include <mutex>
 #include <set>
@@ -7,7 +7,9 @@
 
 #include "base/macros.h"
 
-namespace cert_trans {
+namespace base {
+namespace monitoring {
+
 class Metric;
 
 
@@ -15,15 +17,10 @@ class Registry {
  public:
   static Registry* Instance();
 
-  // Registers a new Metric to be exported.
-  // |metric| must remain valid for at least the lifetime of this object
   void AddMetric(const Metric* metric);
 
-  // Resets the registry, removing all references to added Metric objects.
-  // This method is only for use in testing.
   void ResetForTestingOnly();
 
-  // Returns the set of currently known metrics.
   std::set<const Metric*> GetMetrics() const;
 
  private:
@@ -37,7 +34,7 @@ class Registry {
   DISALLOW_COPY_AND_ASSIGN(Registry);
 };
 
+} // namespace monitoring 
+} // namespace base
 
-}  // namespace cert_trans
-
-#endif  // CERT_TRANS_MONITORING_REGISTRY_H_
+#endif  // BASE_MONITORING_REGISTRY_H_
