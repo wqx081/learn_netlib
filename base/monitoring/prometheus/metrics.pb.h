@@ -74,7 +74,7 @@ inline bool MetricType_Parse(
 }
 // ===================================================================
 
-class LabelPair : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:io.prometheus.client.LabelPair) */ {
+class LabelPair : public ::google::protobuf::Message {
  public:
   LabelPair();
   virtual ~LabelPair();
@@ -116,11 +116,7 @@ class LabelPair : public ::google::protobuf::Message /* @@protoc_insertion_point
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
-      bool deterministic, ::google::protobuf::uint8* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
-    return InternalSerializeWithCachedSizesToArray(false, output);
-  }
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -187,7 +183,7 @@ class LabelPair : public ::google::protobuf::Message /* @@protoc_insertion_point
 };
 // -------------------------------------------------------------------
 
-class Gauge : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:io.prometheus.client.Gauge) */ {
+class Gauge : public ::google::protobuf::Message {
  public:
   Gauge();
   virtual ~Gauge();
@@ -229,11 +225,7 @@ class Gauge : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
-      bool deterministic, ::google::protobuf::uint8* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
-    return InternalSerializeWithCachedSizesToArray(false, output);
-  }
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -280,7 +272,7 @@ class Gauge : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
 };
 // -------------------------------------------------------------------
 
-class Counter : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:io.prometheus.client.Counter) */ {
+class Counter : public ::google::protobuf::Message {
  public:
   Counter();
   virtual ~Counter();
@@ -322,11 +314,7 @@ class Counter : public ::google::protobuf::Message /* @@protoc_insertion_point(c
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
-      bool deterministic, ::google::protobuf::uint8* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
-    return InternalSerializeWithCachedSizesToArray(false, output);
-  }
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -373,7 +361,7 @@ class Counter : public ::google::protobuf::Message /* @@protoc_insertion_point(c
 };
 // -------------------------------------------------------------------
 
-class Quantile : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:io.prometheus.client.Quantile) */ {
+class Quantile : public ::google::protobuf::Message {
  public:
   Quantile();
   virtual ~Quantile();
@@ -415,11 +403,7 @@ class Quantile : public ::google::protobuf::Message /* @@protoc_insertion_point(
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
-      bool deterministic, ::google::protobuf::uint8* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
-    return InternalSerializeWithCachedSizesToArray(false, output);
-  }
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -476,7 +460,7 @@ class Quantile : public ::google::protobuf::Message /* @@protoc_insertion_point(
 };
 // -------------------------------------------------------------------
 
-class Summary : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:io.prometheus.client.Summary) */ {
+class Summary : public ::google::protobuf::Message {
  public:
   Summary();
   virtual ~Summary();
@@ -518,11 +502,7 @@ class Summary : public ::google::protobuf::Message /* @@protoc_insertion_point(c
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
-      bool deterministic, ::google::protobuf::uint8* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
-    return InternalSerializeWithCachedSizesToArray(false, output);
-  }
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -592,7 +572,7 @@ class Summary : public ::google::protobuf::Message /* @@protoc_insertion_point(c
 };
 // -------------------------------------------------------------------
 
-class Untyped : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:io.prometheus.client.Untyped) */ {
+class Untyped : public ::google::protobuf::Message {
  public:
   Untyped();
   virtual ~Untyped();
@@ -634,11 +614,7 @@ class Untyped : public ::google::protobuf::Message /* @@protoc_insertion_point(c
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
-      bool deterministic, ::google::protobuf::uint8* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
-    return InternalSerializeWithCachedSizesToArray(false, output);
-  }
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -685,7 +661,7 @@ class Untyped : public ::google::protobuf::Message /* @@protoc_insertion_point(c
 };
 // -------------------------------------------------------------------
 
-class Histogram : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:io.prometheus.client.Histogram) */ {
+class Histogram : public ::google::protobuf::Message {
  public:
   Histogram();
   virtual ~Histogram();
@@ -727,11 +703,7 @@ class Histogram : public ::google::protobuf::Message /* @@protoc_insertion_point
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
-      bool deterministic, ::google::protobuf::uint8* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
-    return InternalSerializeWithCachedSizesToArray(false, output);
-  }
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -801,7 +773,7 @@ class Histogram : public ::google::protobuf::Message /* @@protoc_insertion_point
 };
 // -------------------------------------------------------------------
 
-class Bucket : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:io.prometheus.client.Bucket) */ {
+class Bucket : public ::google::protobuf::Message {
  public:
   Bucket();
   virtual ~Bucket();
@@ -843,11 +815,7 @@ class Bucket : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
-      bool deterministic, ::google::protobuf::uint8* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
-    return InternalSerializeWithCachedSizesToArray(false, output);
-  }
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -904,7 +872,7 @@ class Bucket : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
 };
 // -------------------------------------------------------------------
 
-class Metric : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:io.prometheus.client.Metric) */ {
+class Metric : public ::google::protobuf::Message {
  public:
   Metric();
   virtual ~Metric();
@@ -946,11 +914,7 @@ class Metric : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
-      bool deterministic, ::google::protobuf::uint8* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
-    return InternalSerializeWithCachedSizesToArray(false, output);
-  }
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -1070,7 +1034,7 @@ class Metric : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
 };
 // -------------------------------------------------------------------
 
-class MetricFamily : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:io.prometheus.client.MetricFamily) */ {
+class MetricFamily : public ::google::protobuf::Message {
  public:
   MetricFamily();
   virtual ~MetricFamily();
@@ -1112,11 +1076,7 @@ class MetricFamily : public ::google::protobuf::Message /* @@protoc_insertion_po
       ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
-      bool deterministic, ::google::protobuf::uint8* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
-    return InternalSerializeWithCachedSizesToArray(false, output);
-  }
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
   int GetCachedSize() const { return _cached_size_; }
   private:
   void SharedCtor();
@@ -1252,7 +1212,6 @@ inline ::std::string* LabelPair::mutable_name() {
   return name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* LabelPair::release_name() {
-  // @@protoc_insertion_point(field_release:io.prometheus.client.LabelPair.name)
   clear_has_name();
   return name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -1306,7 +1265,6 @@ inline ::std::string* LabelPair::mutable_value() {
   return value_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* LabelPair::release_value() {
-  // @@protoc_insertion_point(field_release:io.prometheus.client.LabelPair.value)
   clear_has_value();
   return value_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -1733,7 +1691,6 @@ inline ::io::prometheus::client::Gauge* Metric::mutable_gauge() {
   return gauge_;
 }
 inline ::io::prometheus::client::Gauge* Metric::release_gauge() {
-  // @@protoc_insertion_point(field_release:io.prometheus.client.Metric.gauge)
   clear_has_gauge();
   ::io::prometheus::client::Gauge* temp = gauge_;
   gauge_ = NULL;
@@ -1777,7 +1734,6 @@ inline ::io::prometheus::client::Counter* Metric::mutable_counter() {
   return counter_;
 }
 inline ::io::prometheus::client::Counter* Metric::release_counter() {
-  // @@protoc_insertion_point(field_release:io.prometheus.client.Metric.counter)
   clear_has_counter();
   ::io::prometheus::client::Counter* temp = counter_;
   counter_ = NULL;
@@ -1821,7 +1777,6 @@ inline ::io::prometheus::client::Summary* Metric::mutable_summary() {
   return summary_;
 }
 inline ::io::prometheus::client::Summary* Metric::release_summary() {
-  // @@protoc_insertion_point(field_release:io.prometheus.client.Metric.summary)
   clear_has_summary();
   ::io::prometheus::client::Summary* temp = summary_;
   summary_ = NULL;
@@ -1865,7 +1820,6 @@ inline ::io::prometheus::client::Untyped* Metric::mutable_untyped() {
   return untyped_;
 }
 inline ::io::prometheus::client::Untyped* Metric::release_untyped() {
-  // @@protoc_insertion_point(field_release:io.prometheus.client.Metric.untyped)
   clear_has_untyped();
   ::io::prometheus::client::Untyped* temp = untyped_;
   untyped_ = NULL;
@@ -1909,7 +1863,6 @@ inline ::io::prometheus::client::Histogram* Metric::mutable_histogram() {
   return histogram_;
 }
 inline ::io::prometheus::client::Histogram* Metric::release_histogram() {
-  // @@protoc_insertion_point(field_release:io.prometheus.client.Metric.histogram)
   clear_has_histogram();
   ::io::prometheus::client::Histogram* temp = histogram_;
   histogram_ = NULL;
@@ -1994,7 +1947,6 @@ inline ::std::string* MetricFamily::mutable_name() {
   return name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* MetricFamily::release_name() {
-  // @@protoc_insertion_point(field_release:io.prometheus.client.MetricFamily.name)
   clear_has_name();
   return name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -2048,7 +2000,6 @@ inline ::std::string* MetricFamily::mutable_help() {
   return help_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* MetricFamily::release_help() {
-  // @@protoc_insertion_point(field_release:io.prometheus.client.MetricFamily.help)
   clear_has_help();
   return help_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }

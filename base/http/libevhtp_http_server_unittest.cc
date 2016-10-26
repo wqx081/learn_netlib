@@ -33,7 +33,7 @@ struct Options {
 };
 
 
-void GlobCallback(evhtp_request_t* request, void* arg) {
+void GenCallback(evhtp_request_t* request, void* arg) {
   (void) arg;
   LOG(INFO) << "GlobCallback";
 
@@ -55,7 +55,7 @@ class HTTPServer {
     htp_ = evhtp_new(ev_base_, nullptr);
     DCHECK(ev_base_);
     DCHECK(htp_);
-    evhtp_set_glob_cb(htp_, "/", GlobCallback, nullptr);
+    evhtp_set_gencb(htp_, GenCallback, nullptr);
   }
 
   const Options& options_;
@@ -65,6 +65,7 @@ class HTTPServer {
   
   DISALLOW_COPY_AND_ASSIGN(HTTPServer);
 };
+
 
 HTTPServer::HTTPServer(const Options& options)
     : options_(options) {

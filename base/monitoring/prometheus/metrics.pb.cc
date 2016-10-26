@@ -58,7 +58,6 @@ const ::google::protobuf::EnumDescriptor* MetricType_descriptor_ = NULL;
 }  // namespace
 
 
-void protobuf_AssignDesc_metrics_2eproto() GOOGLE_ATTRIBUTE_COLD;
 void protobuf_AssignDesc_metrics_2eproto() {
   protobuf_AddDesc_metrics_2eproto();
   const ::google::protobuf::FileDescriptor* file =
@@ -242,7 +241,6 @@ inline void protobuf_AssignDescriptorsOnce() {
                  &protobuf_AssignDesc_metrics_2eproto);
 }
 
-void protobuf_RegisterTypes(const ::std::string&) GOOGLE_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
@@ -292,7 +290,6 @@ void protobuf_ShutdownFile_metrics_2eproto() {
   delete MetricFamily_reflection_;
 }
 
-void protobuf_AddDesc_metrics_2eproto() GOOGLE_ATTRIBUTE_COLD;
 void protobuf_AddDesc_metrics_2eproto() {
   static bool already_here = false;
   if (already_here) return;
@@ -375,6 +372,16 @@ bool MetricType_IsValid(int value) {
 }
 
 
+namespace {
+
+static void MergeFromFail(int line) GOOGLE_ATTRIBUTE_COLD;
+static void MergeFromFail(int line) {
+  GOOGLE_CHECK(false) << __FILE__ << ":" << line;
+}
+
+}  // namespace
+
+
 // ===================================================================
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
@@ -445,7 +452,6 @@ LabelPair* LabelPair::New(::google::protobuf::Arena* arena) const {
 }
 
 void LabelPair::Clear() {
-// @@protoc_insertion_point(message_clear_start:io.prometheus.client.LabelPair)
   if (_has_bits_[0 / 32] & 3u) {
     if (has_name()) {
       name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
@@ -462,7 +468,7 @@ void LabelPair::Clear() {
 
 bool LabelPair::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:io.prometheus.client.LabelPair)
   for (;;) {
@@ -555,8 +561,8 @@ void LabelPair::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:io.prometheus.client.LabelPair)
 }
 
-::google::protobuf::uint8* LabelPair::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* LabelPair::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:io.prometheus.client.LabelPair)
   // optional string name = 1;
   if (has_name()) {
@@ -589,7 +595,6 @@ void LabelPair::SerializeWithCachedSizes(
 }
 
 int LabelPair::ByteSize() const {
-// @@protoc_insertion_point(message_byte_size_start:io.prometheus.client.LabelPair)
   int total_size = 0;
 
   if (_has_bits_[0 / 32] & 3u) {
@@ -620,27 +625,19 @@ int LabelPair::ByteSize() const {
 }
 
 void LabelPair::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:io.prometheus.client.LabelPair)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) {
-    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
-  }
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
   const LabelPair* source = 
       ::google::protobuf::internal::DynamicCastToGenerated<const LabelPair>(
           &from);
   if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:io.prometheus.client.LabelPair)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:io.prometheus.client.LabelPair)
     MergeFrom(*source);
   }
 }
 
 void LabelPair::MergeFrom(const LabelPair& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:io.prometheus.client.LabelPair)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) {
-    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
-  }
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_name()) {
       set_has_name();
@@ -657,14 +654,12 @@ void LabelPair::MergeFrom(const LabelPair& from) {
 }
 
 void LabelPair::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:io.prometheus.client.LabelPair)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void LabelPair::CopyFrom(const LabelPair& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:io.prometheus.client.LabelPair)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -738,7 +733,6 @@ void LabelPair::clear_name() {
   return name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
  ::std::string* LabelPair::release_name() {
-  // @@protoc_insertion_point(field_release:io.prometheus.client.LabelPair.name)
   clear_has_name();
   return name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -792,7 +786,6 @@ void LabelPair::clear_value() {
   return value_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
  ::std::string* LabelPair::release_value() {
-  // @@protoc_insertion_point(field_release:io.prometheus.client.LabelPair.value)
   clear_has_value();
   return value_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -873,7 +866,6 @@ Gauge* Gauge::New(::google::protobuf::Arena* arena) const {
 }
 
 void Gauge::Clear() {
-// @@protoc_insertion_point(message_clear_start:io.prometheus.client.Gauge)
   value_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   if (_internal_metadata_.have_unknown_fields()) {
@@ -883,7 +875,7 @@ void Gauge::Clear() {
 
 bool Gauge::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:io.prometheus.client.Gauge)
   for (;;) {
@@ -942,8 +934,8 @@ void Gauge::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:io.prometheus.client.Gauge)
 }
 
-::google::protobuf::uint8* Gauge::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* Gauge::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:io.prometheus.client.Gauge)
   // optional double value = 1;
   if (has_value()) {
@@ -959,7 +951,6 @@ void Gauge::SerializeWithCachedSizes(
 }
 
 int Gauge::ByteSize() const {
-// @@protoc_insertion_point(message_byte_size_start:io.prometheus.client.Gauge)
   int total_size = 0;
 
   // optional double value = 1;
@@ -979,27 +970,19 @@ int Gauge::ByteSize() const {
 }
 
 void Gauge::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:io.prometheus.client.Gauge)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) {
-    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
-  }
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
   const Gauge* source = 
       ::google::protobuf::internal::DynamicCastToGenerated<const Gauge>(
           &from);
   if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:io.prometheus.client.Gauge)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:io.prometheus.client.Gauge)
     MergeFrom(*source);
   }
 }
 
 void Gauge::MergeFrom(const Gauge& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:io.prometheus.client.Gauge)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) {
-    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
-  }
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_value()) {
       set_value(from.value());
@@ -1011,14 +994,12 @@ void Gauge::MergeFrom(const Gauge& from) {
 }
 
 void Gauge::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:io.prometheus.client.Gauge)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void Gauge::CopyFrom(const Gauge& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:io.prometheus.client.Gauge)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -1142,7 +1123,6 @@ Counter* Counter::New(::google::protobuf::Arena* arena) const {
 }
 
 void Counter::Clear() {
-// @@protoc_insertion_point(message_clear_start:io.prometheus.client.Counter)
   value_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   if (_internal_metadata_.have_unknown_fields()) {
@@ -1152,7 +1132,7 @@ void Counter::Clear() {
 
 bool Counter::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:io.prometheus.client.Counter)
   for (;;) {
@@ -1211,8 +1191,8 @@ void Counter::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:io.prometheus.client.Counter)
 }
 
-::google::protobuf::uint8* Counter::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* Counter::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:io.prometheus.client.Counter)
   // optional double value = 1;
   if (has_value()) {
@@ -1228,7 +1208,6 @@ void Counter::SerializeWithCachedSizes(
 }
 
 int Counter::ByteSize() const {
-// @@protoc_insertion_point(message_byte_size_start:io.prometheus.client.Counter)
   int total_size = 0;
 
   // optional double value = 1;
@@ -1248,27 +1227,19 @@ int Counter::ByteSize() const {
 }
 
 void Counter::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:io.prometheus.client.Counter)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) {
-    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
-  }
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
   const Counter* source = 
       ::google::protobuf::internal::DynamicCastToGenerated<const Counter>(
           &from);
   if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:io.prometheus.client.Counter)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:io.prometheus.client.Counter)
     MergeFrom(*source);
   }
 }
 
 void Counter::MergeFrom(const Counter& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:io.prometheus.client.Counter)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) {
-    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
-  }
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_value()) {
       set_value(from.value());
@@ -1280,14 +1251,12 @@ void Counter::MergeFrom(const Counter& from) {
 }
 
 void Counter::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:io.prometheus.client.Counter)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void Counter::CopyFrom(const Counter& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:io.prometheus.client.Counter)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -1413,17 +1382,8 @@ Quantile* Quantile::New(::google::protobuf::Arena* arena) const {
 }
 
 void Quantile::Clear() {
-// @@protoc_insertion_point(message_clear_start:io.prometheus.client.Quantile)
-#if defined(__clang__)
-#define ZR_HELPER_(f) \
-  _Pragma("clang diagnostic push") \
-  _Pragma("clang diagnostic ignored \"-Winvalid-offsetof\"") \
-  __builtin_offsetof(Quantile, f) \
-  _Pragma("clang diagnostic pop")
-#else
 #define ZR_HELPER_(f) reinterpret_cast<char*>(\
   &reinterpret_cast<Quantile*>(16)->f)
-#endif
 
 #define ZR_(first, last) do {\
   ::memset(&first, 0,\
@@ -1443,7 +1403,7 @@ void Quantile::Clear() {
 
 bool Quantile::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:io.prometheus.client.Quantile)
   for (;;) {
@@ -1522,8 +1482,8 @@ void Quantile::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:io.prometheus.client.Quantile)
 }
 
-::google::protobuf::uint8* Quantile::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* Quantile::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:io.prometheus.client.Quantile)
   // optional double quantile = 1;
   if (has_quantile()) {
@@ -1544,7 +1504,6 @@ void Quantile::SerializeWithCachedSizes(
 }
 
 int Quantile::ByteSize() const {
-// @@protoc_insertion_point(message_byte_size_start:io.prometheus.client.Quantile)
   int total_size = 0;
 
   if (_has_bits_[0 / 32] & 3u) {
@@ -1571,27 +1530,19 @@ int Quantile::ByteSize() const {
 }
 
 void Quantile::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:io.prometheus.client.Quantile)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) {
-    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
-  }
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
   const Quantile* source = 
       ::google::protobuf::internal::DynamicCastToGenerated<const Quantile>(
           &from);
   if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:io.prometheus.client.Quantile)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:io.prometheus.client.Quantile)
     MergeFrom(*source);
   }
 }
 
 void Quantile::MergeFrom(const Quantile& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:io.prometheus.client.Quantile)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) {
-    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
-  }
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_quantile()) {
       set_quantile(from.quantile());
@@ -1606,14 +1557,12 @@ void Quantile::MergeFrom(const Quantile& from) {
 }
 
 void Quantile::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:io.prometheus.client.Quantile)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void Quantile::CopyFrom(const Quantile& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:io.prometheus.client.Quantile)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -1765,17 +1714,8 @@ Summary* Summary::New(::google::protobuf::Arena* arena) const {
 }
 
 void Summary::Clear() {
-// @@protoc_insertion_point(message_clear_start:io.prometheus.client.Summary)
-#if defined(__clang__)
-#define ZR_HELPER_(f) \
-  _Pragma("clang diagnostic push") \
-  _Pragma("clang diagnostic ignored \"-Winvalid-offsetof\"") \
-  __builtin_offsetof(Summary, f) \
-  _Pragma("clang diagnostic pop")
-#else
 #define ZR_HELPER_(f) reinterpret_cast<char*>(\
   &reinterpret_cast<Summary*>(16)->f)
-#endif
 
 #define ZR_(first, last) do {\
   ::memset(&first, 0,\
@@ -1796,7 +1736,7 @@ void Summary::Clear() {
 
 bool Summary::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:io.prometheus.client.Summary)
   for (;;) {
@@ -1898,8 +1838,8 @@ void Summary::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:io.prometheus.client.Summary)
 }
 
-::google::protobuf::uint8* Summary::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* Summary::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:io.prometheus.client.Summary)
   // optional uint64 sample_count = 1;
   if (has_sample_count()) {
@@ -1914,8 +1854,8 @@ void Summary::SerializeWithCachedSizes(
   // repeated .io.prometheus.client.Quantile quantile = 3;
   for (unsigned int i = 0, n = this->quantile_size(); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageNoVirtualToArray(
-        3, this->quantile(i), false, target);
+      WriteMessageNoVirtualToArray(
+        3, this->quantile(i), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -1927,7 +1867,6 @@ void Summary::SerializeWithCachedSizes(
 }
 
 int Summary::ByteSize() const {
-// @@protoc_insertion_point(message_byte_size_start:io.prometheus.client.Summary)
   int total_size = 0;
 
   if (_has_bits_[0 / 32] & 3u) {
@@ -1964,27 +1903,19 @@ int Summary::ByteSize() const {
 }
 
 void Summary::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:io.prometheus.client.Summary)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) {
-    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
-  }
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
   const Summary* source = 
       ::google::protobuf::internal::DynamicCastToGenerated<const Summary>(
           &from);
   if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:io.prometheus.client.Summary)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:io.prometheus.client.Summary)
     MergeFrom(*source);
   }
 }
 
 void Summary::MergeFrom(const Summary& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:io.prometheus.client.Summary)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) {
-    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
-  }
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
   quantile_.MergeFrom(from.quantile_);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_sample_count()) {
@@ -2000,14 +1931,12 @@ void Summary::MergeFrom(const Summary& from) {
 }
 
 void Summary::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:io.prometheus.client.Summary)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void Summary::CopyFrom(const Summary& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:io.prometheus.client.Summary)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -2187,7 +2116,6 @@ Untyped* Untyped::New(::google::protobuf::Arena* arena) const {
 }
 
 void Untyped::Clear() {
-// @@protoc_insertion_point(message_clear_start:io.prometheus.client.Untyped)
   value_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   if (_internal_metadata_.have_unknown_fields()) {
@@ -2197,7 +2125,7 @@ void Untyped::Clear() {
 
 bool Untyped::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:io.prometheus.client.Untyped)
   for (;;) {
@@ -2256,8 +2184,8 @@ void Untyped::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:io.prometheus.client.Untyped)
 }
 
-::google::protobuf::uint8* Untyped::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* Untyped::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:io.prometheus.client.Untyped)
   // optional double value = 1;
   if (has_value()) {
@@ -2273,7 +2201,6 @@ void Untyped::SerializeWithCachedSizes(
 }
 
 int Untyped::ByteSize() const {
-// @@protoc_insertion_point(message_byte_size_start:io.prometheus.client.Untyped)
   int total_size = 0;
 
   // optional double value = 1;
@@ -2293,27 +2220,19 @@ int Untyped::ByteSize() const {
 }
 
 void Untyped::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:io.prometheus.client.Untyped)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) {
-    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
-  }
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
   const Untyped* source = 
       ::google::protobuf::internal::DynamicCastToGenerated<const Untyped>(
           &from);
   if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:io.prometheus.client.Untyped)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:io.prometheus.client.Untyped)
     MergeFrom(*source);
   }
 }
 
 void Untyped::MergeFrom(const Untyped& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:io.prometheus.client.Untyped)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) {
-    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
-  }
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_value()) {
       set_value(from.value());
@@ -2325,14 +2244,12 @@ void Untyped::MergeFrom(const Untyped& from) {
 }
 
 void Untyped::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:io.prometheus.client.Untyped)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void Untyped::CopyFrom(const Untyped& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:io.prometheus.client.Untyped)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -2459,17 +2376,8 @@ Histogram* Histogram::New(::google::protobuf::Arena* arena) const {
 }
 
 void Histogram::Clear() {
-// @@protoc_insertion_point(message_clear_start:io.prometheus.client.Histogram)
-#if defined(__clang__)
-#define ZR_HELPER_(f) \
-  _Pragma("clang diagnostic push") \
-  _Pragma("clang diagnostic ignored \"-Winvalid-offsetof\"") \
-  __builtin_offsetof(Histogram, f) \
-  _Pragma("clang diagnostic pop")
-#else
 #define ZR_HELPER_(f) reinterpret_cast<char*>(\
   &reinterpret_cast<Histogram*>(16)->f)
-#endif
 
 #define ZR_(first, last) do {\
   ::memset(&first, 0,\
@@ -2490,7 +2398,7 @@ void Histogram::Clear() {
 
 bool Histogram::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:io.prometheus.client.Histogram)
   for (;;) {
@@ -2592,8 +2500,8 @@ void Histogram::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:io.prometheus.client.Histogram)
 }
 
-::google::protobuf::uint8* Histogram::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* Histogram::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:io.prometheus.client.Histogram)
   // optional uint64 sample_count = 1;
   if (has_sample_count()) {
@@ -2608,8 +2516,8 @@ void Histogram::SerializeWithCachedSizes(
   // repeated .io.prometheus.client.Bucket bucket = 3;
   for (unsigned int i = 0, n = this->bucket_size(); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageNoVirtualToArray(
-        3, this->bucket(i), false, target);
+      WriteMessageNoVirtualToArray(
+        3, this->bucket(i), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -2621,7 +2529,6 @@ void Histogram::SerializeWithCachedSizes(
 }
 
 int Histogram::ByteSize() const {
-// @@protoc_insertion_point(message_byte_size_start:io.prometheus.client.Histogram)
   int total_size = 0;
 
   if (_has_bits_[0 / 32] & 3u) {
@@ -2658,27 +2565,19 @@ int Histogram::ByteSize() const {
 }
 
 void Histogram::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:io.prometheus.client.Histogram)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) {
-    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
-  }
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
   const Histogram* source = 
       ::google::protobuf::internal::DynamicCastToGenerated<const Histogram>(
           &from);
   if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:io.prometheus.client.Histogram)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:io.prometheus.client.Histogram)
     MergeFrom(*source);
   }
 }
 
 void Histogram::MergeFrom(const Histogram& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:io.prometheus.client.Histogram)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) {
-    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
-  }
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
   bucket_.MergeFrom(from.bucket_);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_sample_count()) {
@@ -2694,14 +2593,12 @@ void Histogram::MergeFrom(const Histogram& from) {
 }
 
 void Histogram::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:io.prometheus.client.Histogram)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void Histogram::CopyFrom(const Histogram& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:io.prometheus.client.Histogram)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -2883,17 +2780,8 @@ Bucket* Bucket::New(::google::protobuf::Arena* arena) const {
 }
 
 void Bucket::Clear() {
-// @@protoc_insertion_point(message_clear_start:io.prometheus.client.Bucket)
-#if defined(__clang__)
-#define ZR_HELPER_(f) \
-  _Pragma("clang diagnostic push") \
-  _Pragma("clang diagnostic ignored \"-Winvalid-offsetof\"") \
-  __builtin_offsetof(Bucket, f) \
-  _Pragma("clang diagnostic pop")
-#else
 #define ZR_HELPER_(f) reinterpret_cast<char*>(\
   &reinterpret_cast<Bucket*>(16)->f)
-#endif
 
 #define ZR_(first, last) do {\
   ::memset(&first, 0,\
@@ -2913,7 +2801,7 @@ void Bucket::Clear() {
 
 bool Bucket::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:io.prometheus.client.Bucket)
   for (;;) {
@@ -2992,8 +2880,8 @@ void Bucket::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:io.prometheus.client.Bucket)
 }
 
-::google::protobuf::uint8* Bucket::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* Bucket::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:io.prometheus.client.Bucket)
   // optional uint64 cumulative_count = 1;
   if (has_cumulative_count()) {
@@ -3014,7 +2902,6 @@ void Bucket::SerializeWithCachedSizes(
 }
 
 int Bucket::ByteSize() const {
-// @@protoc_insertion_point(message_byte_size_start:io.prometheus.client.Bucket)
   int total_size = 0;
 
   if (_has_bits_[0 / 32] & 3u) {
@@ -3043,27 +2930,19 @@ int Bucket::ByteSize() const {
 }
 
 void Bucket::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:io.prometheus.client.Bucket)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) {
-    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
-  }
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
   const Bucket* source = 
       ::google::protobuf::internal::DynamicCastToGenerated<const Bucket>(
           &from);
   if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:io.prometheus.client.Bucket)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:io.prometheus.client.Bucket)
     MergeFrom(*source);
   }
 }
 
 void Bucket::MergeFrom(const Bucket& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:io.prometheus.client.Bucket)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) {
-    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
-  }
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_cumulative_count()) {
       set_cumulative_count(from.cumulative_count());
@@ -3078,14 +2957,12 @@ void Bucket::MergeFrom(const Bucket& from) {
 }
 
 void Bucket::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:io.prometheus.client.Bucket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void Bucket::CopyFrom(const Bucket& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:io.prometheus.client.Bucket)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -3255,7 +3132,6 @@ Metric* Metric::New(::google::protobuf::Arena* arena) const {
 }
 
 void Metric::Clear() {
-// @@protoc_insertion_point(message_clear_start:io.prometheus.client.Metric)
   if (_has_bits_[0 / 32] & 126u) {
     if (has_gauge()) {
       if (gauge_ != NULL) gauge_->::io::prometheus::client::Gauge::Clear();
@@ -3283,7 +3159,7 @@ void Metric::Clear() {
 
 bool Metric::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:io.prometheus.client.Metric)
   for (;;) {
@@ -3460,42 +3336,42 @@ void Metric::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:io.prometheus.client.Metric)
 }
 
-::google::protobuf::uint8* Metric::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* Metric::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:io.prometheus.client.Metric)
   // repeated .io.prometheus.client.LabelPair label = 1;
   for (unsigned int i = 0, n = this->label_size(); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageNoVirtualToArray(
-        1, this->label(i), false, target);
+      WriteMessageNoVirtualToArray(
+        1, this->label(i), target);
   }
 
   // optional .io.prometheus.client.Gauge gauge = 2;
   if (has_gauge()) {
     target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageNoVirtualToArray(
-        2, *this->gauge_, false, target);
+      WriteMessageNoVirtualToArray(
+        2, *this->gauge_, target);
   }
 
   // optional .io.prometheus.client.Counter counter = 3;
   if (has_counter()) {
     target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageNoVirtualToArray(
-        3, *this->counter_, false, target);
+      WriteMessageNoVirtualToArray(
+        3, *this->counter_, target);
   }
 
   // optional .io.prometheus.client.Summary summary = 4;
   if (has_summary()) {
     target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageNoVirtualToArray(
-        4, *this->summary_, false, target);
+      WriteMessageNoVirtualToArray(
+        4, *this->summary_, target);
   }
 
   // optional .io.prometheus.client.Untyped untyped = 5;
   if (has_untyped()) {
     target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageNoVirtualToArray(
-        5, *this->untyped_, false, target);
+      WriteMessageNoVirtualToArray(
+        5, *this->untyped_, target);
   }
 
   // optional int64 timestamp_ms = 6;
@@ -3506,8 +3382,8 @@ void Metric::SerializeWithCachedSizes(
   // optional .io.prometheus.client.Histogram histogram = 7;
   if (has_histogram()) {
     target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageNoVirtualToArray(
-        7, *this->histogram_, false, target);
+      WriteMessageNoVirtualToArray(
+        7, *this->histogram_, target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -3519,7 +3395,6 @@ void Metric::SerializeWithCachedSizes(
 }
 
 int Metric::ByteSize() const {
-// @@protoc_insertion_point(message_byte_size_start:io.prometheus.client.Metric)
   int total_size = 0;
 
   if (_has_bits_[1 / 32] & 126u) {
@@ -3586,27 +3461,19 @@ int Metric::ByteSize() const {
 }
 
 void Metric::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:io.prometheus.client.Metric)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) {
-    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
-  }
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
   const Metric* source = 
       ::google::protobuf::internal::DynamicCastToGenerated<const Metric>(
           &from);
   if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:io.prometheus.client.Metric)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:io.prometheus.client.Metric)
     MergeFrom(*source);
   }
 }
 
 void Metric::MergeFrom(const Metric& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:io.prometheus.client.Metric)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) {
-    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
-  }
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
   label_.MergeFrom(from.label_);
   if (from._has_bits_[1 / 32] & (0xffu << (1 % 32))) {
     if (from.has_gauge()) {
@@ -3634,14 +3501,12 @@ void Metric::MergeFrom(const Metric& from) {
 }
 
 void Metric::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:io.prometheus.client.Metric)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void Metric::CopyFrom(const Metric& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:io.prometheus.client.Metric)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -3737,7 +3602,6 @@ const ::io::prometheus::client::Gauge& Metric::gauge() const {
   return gauge_;
 }
 ::io::prometheus::client::Gauge* Metric::release_gauge() {
-  // @@protoc_insertion_point(field_release:io.prometheus.client.Metric.gauge)
   clear_has_gauge();
   ::io::prometheus::client::Gauge* temp = gauge_;
   gauge_ = NULL;
@@ -3781,7 +3645,6 @@ const ::io::prometheus::client::Counter& Metric::counter() const {
   return counter_;
 }
 ::io::prometheus::client::Counter* Metric::release_counter() {
-  // @@protoc_insertion_point(field_release:io.prometheus.client.Metric.counter)
   clear_has_counter();
   ::io::prometheus::client::Counter* temp = counter_;
   counter_ = NULL;
@@ -3825,7 +3688,6 @@ const ::io::prometheus::client::Summary& Metric::summary() const {
   return summary_;
 }
 ::io::prometheus::client::Summary* Metric::release_summary() {
-  // @@protoc_insertion_point(field_release:io.prometheus.client.Metric.summary)
   clear_has_summary();
   ::io::prometheus::client::Summary* temp = summary_;
   summary_ = NULL;
@@ -3869,7 +3731,6 @@ const ::io::prometheus::client::Untyped& Metric::untyped() const {
   return untyped_;
 }
 ::io::prometheus::client::Untyped* Metric::release_untyped() {
-  // @@protoc_insertion_point(field_release:io.prometheus.client.Metric.untyped)
   clear_has_untyped();
   ::io::prometheus::client::Untyped* temp = untyped_;
   untyped_ = NULL;
@@ -3913,7 +3774,6 @@ const ::io::prometheus::client::Histogram& Metric::histogram() const {
   return histogram_;
 }
 ::io::prometheus::client::Histogram* Metric::release_histogram() {
-  // @@protoc_insertion_point(field_release:io.prometheus.client.Metric.histogram)
   clear_has_histogram();
   ::io::prometheus::client::Histogram* temp = histogram_;
   histogram_ = NULL;
@@ -4029,7 +3889,6 @@ MetricFamily* MetricFamily::New(::google::protobuf::Arena* arena) const {
 }
 
 void MetricFamily::Clear() {
-// @@protoc_insertion_point(message_clear_start:io.prometheus.client.MetricFamily)
   if (_has_bits_[0 / 32] & 7u) {
     if (has_name()) {
       name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
@@ -4048,7 +3907,7 @@ void MetricFamily::Clear() {
 
 bool MetricFamily::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:io.prometheus.client.MetricFamily)
   for (;;) {
@@ -4190,8 +4049,8 @@ void MetricFamily::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:io.prometheus.client.MetricFamily)
 }
 
-::google::protobuf::uint8* MetricFamily::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* MetricFamily::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:io.prometheus.client.MetricFamily)
   // optional string name = 1;
   if (has_name()) {
@@ -4224,8 +4083,8 @@ void MetricFamily::SerializeWithCachedSizes(
   // repeated .io.prometheus.client.Metric metric = 4;
   for (unsigned int i = 0, n = this->metric_size(); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageNoVirtualToArray(
-        4, this->metric(i), false, target);
+      WriteMessageNoVirtualToArray(
+        4, this->metric(i), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -4237,7 +4096,6 @@ void MetricFamily::SerializeWithCachedSizes(
 }
 
 int MetricFamily::ByteSize() const {
-// @@protoc_insertion_point(message_byte_size_start:io.prometheus.client.MetricFamily)
   int total_size = 0;
 
   if (_has_bits_[0 / 32] & 7u) {
@@ -4282,27 +4140,19 @@ int MetricFamily::ByteSize() const {
 }
 
 void MetricFamily::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:io.prometheus.client.MetricFamily)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) {
-    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
-  }
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
   const MetricFamily* source = 
       ::google::protobuf::internal::DynamicCastToGenerated<const MetricFamily>(
           &from);
   if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:io.prometheus.client.MetricFamily)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:io.prometheus.client.MetricFamily)
     MergeFrom(*source);
   }
 }
 
 void MetricFamily::MergeFrom(const MetricFamily& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:io.prometheus.client.MetricFamily)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) {
-    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
-  }
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
   metric_.MergeFrom(from.metric_);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_name()) {
@@ -4323,14 +4173,12 @@ void MetricFamily::MergeFrom(const MetricFamily& from) {
 }
 
 void MetricFamily::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:io.prometheus.client.MetricFamily)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void MetricFamily::CopyFrom(const MetricFamily& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:io.prometheus.client.MetricFamily)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -4406,7 +4254,6 @@ void MetricFamily::clear_name() {
   return name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
  ::std::string* MetricFamily::release_name() {
-  // @@protoc_insertion_point(field_release:io.prometheus.client.MetricFamily.name)
   clear_has_name();
   return name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -4460,7 +4307,6 @@ void MetricFamily::clear_help() {
   return help_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
  ::std::string* MetricFamily::release_help() {
-  // @@protoc_insertion_point(field_release:io.prometheus.client.MetricFamily.help)
   clear_has_help();
   return help_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
