@@ -1,3 +1,7 @@
+//
+// InlinedVector<T,N,A> 与 std::vector<T,A> 类似, 但是它提供了内联存储不需要heap分配,
+// 序列的长度 <= N. 典型的 N值非常小（比如 4）.
+// 
 #ifndef BASE_GTL_INLINED_VECTOR_H_
 #define BASE_GTL_INLINED_VECTOR_H_
 

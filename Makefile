@@ -110,6 +110,9 @@ TESTS := \
 	./base/strings/stringprintf_unittest \
 	./base/strings/str_util_unittest \
 	\
+	./base/hash/crc32c_unittest \
+	./base/hash/hash_unittest \
+	\
 	./base/random/distribution_sampler_unittest \
 	./base/random/philox_random_unittest \
 	./base/random/random_distributions_unittest \
@@ -313,6 +316,19 @@ $(APP): ./server/http_server.o
 	@$(CXX) -o $@ $< $(CPP_OBJECTS) $(LIB_FILES) $(TEST_LIB_FILES)
 ./base/strings/str_util_unittest.o: ./base/strings/str_util_unittest.cc \
 	./base/strings/str_util.h
+	@echo "  [CXX]  $@"
+	@$(CXX) $(CXXFLAGS) $@ $<
+
+./base/hash/crc32c_unittest: ./base/hash/crc32c_unittest.o
+	@echo "  [LINK] $@"
+	@$(CXX) -o $@ $< $(CPP_OBJECTS) $(LIB_FILES) $(TEST_LIB_FILES)
+./base/hash/crc32c_unittest.o: ./base/hash/crc32c_unittest.cc
+	@echo "  [CXX]  $@"
+	@$(CXX) $(CXXFLAGS) $@ $<
+./base/hash/hash_unittest: ./base/hash/hash_unittest.o
+	@echo "  [LINK] $@"
+	@$(CXX) -o $@ $< $(CPP_OBJECTS) $(LIB_FILES) $(TEST_LIB_FILES)
+./base/hash/hash_unittest.o: ./base/hash/hash_unittest.cc
 	@echo "  [CXX]  $@"
 	@$(CXX) $(CXXFLAGS) $@ $<
 

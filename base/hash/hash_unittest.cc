@@ -1,26 +1,12 @@
-/* Copyright 2015 The TensorFlow Authors. All Rights Reserved.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-==============================================================================*/
-
 #include <vector>
 
-#include "tensorflow/core/lib/hash/hash.h"
-#include "tensorflow/core/platform/logging.h"
-#include "tensorflow/core/platform/test.h"
-#include "tensorflow/core/platform/test_benchmark.h"
 
-namespace tensorflow {
+#include "base/hash/hash.h"
+#include "base/logging.h"
+#include <gtest/gtest.h>
+
+namespace base {
+namespace hash {
 
 TEST(Hash, SignedUnsignedIssue) {
   const unsigned char d1[1] = {0x62};
@@ -65,6 +51,7 @@ TEST(Hash, SignedUnsignedIssue) {
   }
 }
 
+#if 0
 static void BM_Hash32(int iters, int len) {
   std::string input(len, 'x');
   uint32 h = 0;
@@ -75,5 +62,7 @@ static void BM_Hash32(int iters, int len) {
   VLOG(1) << h;
 }
 BENCHMARK(BM_Hash32)->Range(1, 1024);
+#endif
 
-}  // namespace tensorflow
+} // namespace hash
+}  // namespace base
